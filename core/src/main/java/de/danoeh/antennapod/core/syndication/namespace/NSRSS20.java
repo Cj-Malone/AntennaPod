@@ -131,7 +131,9 @@ public class NSRSS20 extends Namespace {
 			} else if (TITLE.equals(top)) {
 				String title = content.trim();
 				if (ITEM.equals(second) && state.getCurrentItem() != null) {
-					state.getCurrentItem().setTitle(title);
+					if (state.getCurrentItem().getTitle() == null) {
+						state.getCurrentItem().setTitle(title);
+					}
 				} else if (CHANNEL.equals(second) && state.getFeed() != null) {
 					state.getFeed().setTitle(title);
 				} else if (IMAGE.equals(second) && CHANNEL.equals(third)) {

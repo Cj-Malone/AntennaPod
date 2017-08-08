@@ -194,7 +194,9 @@ public class NSAtom extends Namespace {
                 if (FEED.equals(second) && state.getFeed() != null) {
                     state.getFeed().setTitle(textElement.getProcessedContent());
                 } else if (ENTRY.equals(second) && state.getCurrentItem() != null) {
-                    state.getCurrentItem().setTitle(textElement.getProcessedContent());
+                    if (state.getCurrentItem().getTitle() != null) {
+	                    state.getCurrentItem().setTitle(textElement.getProcessedContent());
+                    }
                 }
             } else if (SUBTITLE.equals(top) && FEED.equals(second) && textElement != null &&
                 state.getFeed() != null) {
