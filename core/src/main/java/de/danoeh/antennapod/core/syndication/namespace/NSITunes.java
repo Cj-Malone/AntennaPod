@@ -23,6 +23,7 @@ public class NSITunes extends Namespace {
     public static final String DURATION = "duration";
     public static final String SUBTITLE = "subtitle";
     public static final String SUMMARY = "summary";
+    public static final String TITLE = "title";
 
 
     @Override
@@ -108,6 +109,14 @@ public class NSITunes extends Namespace {
                 state.getCurrentItem().setDescription(summary);
             } else if (state.getFeed() != null) {
                 state.getFeed().setDescription(summary);
+            }
+        } else if (TITLE.equals(localName)) {
+            String title = state.getContentBuf().toString();
+            if (TextUtils.isEmpty(title)) {
+                return;
+            }
+            if (state.getCurrentItem() != null && TextUtils.isEmpty(state.getCurrentItem().getTitle())) {
+                state.getCurrentItem().setTitle(title);
             }
         }
     }
